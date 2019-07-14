@@ -11,23 +11,13 @@ describe('routes : static', () => {
                 done();
             });
         });
-<<<<<<< HEAD
-    });
-    describe('GET /macro', () => {
-        it('should return status code 200', (done) => {
-            request.get('http://localhost:3000/marco', (err, res, body) => {
-                expect(res.statusCode).toBe(200);
-                done()
-            })
-        })
-        it('should contain "polo" in response', (done) => {
-            request.get('http://localhost:3000/marco', (err, res, body) => {
-                expect(res.body).toContain('polo');
-                done()
+    }); 
+    describe('GET /about', () => {
+        it('should contain the string "About Us"', (done) => {
+            request.get('http://localhost:3000/about', (err, res, body) => {
+                expect(body).toContain('About Us');
+                done();
             })
         })
     })
-=======
-    }); 
->>>>>>> routing-controllers-and-view
 });
