@@ -1,0 +1,21 @@
+2019-07-17 13:02:43.533 EDT [10224] LOG:  could not bind IPv6 address "::1": Permission denied
+2019-07-17 13:02:43.533 EDT [10224] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-07-17 13:02:43.534 EDT [10224] LOG:  could not bind IPv4 address "127.0.0.1": Permission denied
+2019-07-17 13:02:43.534 EDT [10224] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-07-17 13:02:43.534 EDT [10224] WARNING:  could not create listen socket for "localhost"
+2019-07-17 13:02:43.534 EDT [10224] FATAL:  could not create any TCP/IP sockets
+2019-07-17 13:02:43.535 EDT [10224] LOG:  database system is shut down
+2019-07-17 13:03:00.399 EDT [6912] LOG:  could not bind IPv6 address "::1": Permission denied
+2019-07-17 13:03:00.399 EDT [6912] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-07-17 13:03:00.399 EDT [6912] LOG:  could not bind IPv4 address "127.0.0.1": Permission denied
+2019-07-17 13:03:00.399 EDT [6912] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-07-17 13:03:00.401 EDT [6912] WARNING:  could not create listen socket for "localhost"
+2019-07-17 13:03:00.401 EDT [6912] FATAL:  could not create any TCP/IP sockets
+2019-07-17 13:03:00.402 EDT [6912] LOG:  database system is shut down
+2019-07-17 13:03:10.617 EDT [16048] LOG:  could not bind IPv6 address "::1": Permission denied
+2019-07-17 13:03:10.617 EDT [16048] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-07-17 13:03:10.619 EDT [16048] LOG:  could not bind IPv4 address "127.0.0.1": Permission denied
+2019-07-17 13:03:10.619 EDT [16048] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2019-07-17 13:03:10.619 EDT [16048] WARNING:  could not create listen socket for "localhost"
+2019-07-17 13:03:10.619 EDT [16048] FATAL:  could not create any TCP/IP sockets
+2019-07-17 13:03:10.620 EDT [16048] LOG:  database system is shut down
