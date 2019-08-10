@@ -1,4 +1,4 @@
-<% if(messages.error) || messages.notice { %>
+<% if(messages.error || messages.notice) { %>
 
   <div class="alert alert-<%= messages.error ? 'danger' : 'warning' %> alert-dismissible fade show" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -17,4 +17,4 @@
         <% } %>
       </div>
     <% } %>
-    <% } %>
+    
