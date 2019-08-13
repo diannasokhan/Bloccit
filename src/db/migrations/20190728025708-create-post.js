@@ -34,6 +34,7 @@ module.exports = {
           as: 'topicId'
         }
       },
+
     });
   },
   down: (queryInterface, Sequelize) => {
