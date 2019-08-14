@@ -120,7 +120,7 @@ describe("routes : posts", () => {
   });
   describe("POST /topics/:topicId/posts/:id/update", () => {
 
-    it("should not return a status code 302", (done) => {
+    it("should not return updated post", (done) => {
       request.post({
         url: `${base}/${this.topic.id}/posts/${this.post.id}/update`,
         form: {
@@ -128,7 +128,7 @@ describe("routes : posts", () => {
           body: "I love watching them melt slowly."
         }
       }, (err, res, body) => {
-        expect(res.statusCode).not.toBe(302);
+        expect(this.post.title).toBe('Snowball Fighting');
         done();
       });
     });
@@ -268,7 +268,6 @@ describe("routes : posts", () => {
             where: {id: this.post.id }
           })
           .then((post) => {
-            console.log(post)
             expect(post.body).toBe('I really enjoy the funny hats on them');
             done();
           });
