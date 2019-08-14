@@ -60,7 +60,7 @@ show(req, res, next){
               if(authorized){
                 res.render('posts/edit', {post});
               }else{
-                req.flash('You are not authorized to do that');
+                req.flash('notice','You are not authorized to do that');
                 res.redirect(`/topics/${req.params.topicId}/posts/${req.params.id}`)
               }
           }

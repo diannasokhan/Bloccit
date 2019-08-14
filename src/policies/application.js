@@ -9,7 +9,7 @@ module.exports = class ApplicationPolicy{
     _isAdmin(){
         return this.user && this.user.role == 'admin';
     }
-    isMember(){
+    _isMember(){
         return this.user && this.user.role == 'member';
     }
     new(){

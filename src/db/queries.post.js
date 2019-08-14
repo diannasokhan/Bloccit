@@ -1,5 +1,6 @@
 const Post = require('./models').Post;
 const Flair = require('./models').Flair;
+const Authorizer = require('../policies/post');
 
 module.exports = {
     addPost(newPost, callback){
@@ -26,7 +27,7 @@ module.exports = {
     deletePost(req, callback){
         return Post.findById(req.params.id)
         .then((post) => {
-            const authorizer = new Authorizer(req.user, post).destroy();
+            const authorized = new Authorizer(req.user, post).destroy();
             if(authorized){
                 post.destroy()
                 .then((res) => {
@@ -41,7 +42,7 @@ module.exports = {
         })
     },
     updatePost(req, updatedPost, callback){
-        return Post.findById(req.id)
+        return Post.findById(req.params.id)
         .then((post) => {
           if(!post){
             return callback("Post not found");
