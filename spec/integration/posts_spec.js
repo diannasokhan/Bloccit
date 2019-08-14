@@ -240,7 +240,7 @@ describe("routes : posts", () => {
 
     it("should return a status code 302", (done) => {
       request.post({
-        url: `${base}/${this.topicId}/posts/${this.post.id}/update`,
+        url: `${base}/${this.topic.id}/posts/${this.post.id}/update`,
         form: {
           title: "Snowman Building Competition",
           body: "I love watching them melt slowly."
@@ -253,7 +253,7 @@ describe("routes : posts", () => {
 
     it("should update the post with the given values", (done) => {
         const options = {
-          url: `${base}/${this.topicId}/posts/${this.post.id}/update`,
+          url: `${base}/${this.topic.id}/posts/${this.post.id}/update`,
           form: {
             title: "Snowman Building Competition",
             body: 'I really enjoy the funny hats on them'
@@ -265,7 +265,7 @@ describe("routes : posts", () => {
           expect(err).toBeNull();
 
           Post.findOne({
-            where: {title: 'Snowman Building Competition' }
+            where: {id: this.post.id }
           })
           .then((post) => {
             console.log(post)
