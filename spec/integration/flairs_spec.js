@@ -6,6 +6,7 @@ const sequelize = require('../../src/db/models/index').sequelize;
 const Topic = require('../../src/db/models').Topic;
 const Post = require('../../src/db/models').Post;
 const Flair = require('../../src/db/models').Flair;
+const User = require('../../src/db/models').User;
 
 describe('routes : flairs', () => {
 
@@ -13,40 +14,46 @@ describe('routes : flairs', () => {
         this.topic;
         this.post;
         this.flair;
+        this.user;
 
         sequelize.sync({force: true}).then((res) => {
-
+          User.create({
+            email: 'starman@tesla.com',
+            password: 'Trekkie4lyfe'
+          }).then((user) => {
+            this.user = user;
             Topic.create({
-                title: 'Winter Games',
-                description: 'Post your Winter Games stories.'
-            }).then((topic) => {
-                this.topic = topic;
+              title: 'Winter Games',
+              description: 'Post your Winter Games stories.'
+          }).then((topic) => {
+            this.topic = topic;
+            Post.create({
+              title: 'Snowball Fighting',
+              body: 'So much snow!',
+              topicId: this.topic.id,
+              userId: this.user.id
+            })
+            .then((post) => {
+              this.post = post;
 
-                Post.create({
-                  title: 'Snowball Fighting',
-                  body: 'So much snow!',
-                  topicId: this.topic.id
-                })
-                .then((post) => {
-                  this.post = post;
-
-                  Flair.create({
-                    name: 'Top dog',
-               	    color: 'blue',
-                    postId: this.post.id
-                  })
-                 .then((flair) => {
-                   this.flair = flair;
-                   done();
-                 })
-                 .catch((err) => {
-                   console.log(err);
-                   done();
-                 });
-              });
-           });
-        });
+              Flair.create({
+                name: 'Top dog',
+                 color: 'blue',
+                postId: this.post.id
+              })
+             .then((flair) => {
+               this.flair = flair;
+               done();
+             })
+             .catch((err) => {
+               console.log(err);
+               done();
+             });
+          });
+       });
+      })
     });
+  });
 
     describe('GET /posts/:postId/flairs/new', () => {
         it('should render a new flair form', (done) => {
