@@ -53,7 +53,7 @@ describe('routes : flairs', () => {
        });
       })
     });
-  });
+  npm });
 
     describe('GET /posts/:postId/flairs/new', () => {
         it('should render a new flair form', (done) => {
