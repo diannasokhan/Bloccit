@@ -81,7 +81,7 @@ describe('#create()', () => {
             expect(err.message).toContain('Comment.userId cannot be null');
             expect(err.message).toContain('Comment.postId cannot be null');
             done();
-        })
+        });
     });
 });
 describe('#setUser()', () => {
@@ -96,17 +96,22 @@ describe('#setUser()', () => {
                 expect(comment.userId).toBe(newUser.id);
                 done();
             });
+        }).catch((err) => {
+            console.log(err);
+            done();
         })
     });
-});
+});   
 describe('#getUser()', () => {
     it('should return the associated user', (done) => {
         this.comment.getUser()
         .then((associatedUser) => {
-            console.log(associatedUser)
             expect(associatedUser.email).toBe('starman@tesla.com');
             done();
-        });
+        }).catch((err) => {
+            console.log(err);
+            done();
+        })
     });
 });
 describe('#setPost()', () => {
@@ -123,6 +128,9 @@ describe('#setPost()', () => {
                 expect(comment.postId).toBe(newPost.id);
                 done()
             });
+        }).catch((err) => {
+            console.log(err);
+            done();
         })
     });
 });
@@ -132,7 +140,10 @@ describe('#getPost()', () => {
         .then((associatedPost) => {
             expect(associatedPost.title).toBe('My first visit to Proxima Centauri b');
             done();
-        }); 
+        }).catch((err) => {
+            console.log(err);
+            done();
+        })
     });
 });
 });
