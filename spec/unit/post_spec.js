@@ -123,28 +123,4 @@ describe('Post', () => {
             });
         });
     });
-    describe('#getPoints()', () => {
-       it('should return number of votes for a post', (done) => {
-        Vote.create({
-            value: 1,
-            userId: this.user.id,
-            postId: this.post.id
-        }).then(() => {
-            User.create({
-                email: 'dsokhan@gmail.com',
-                password: 'password'
-            }).then((newUser) => {
-                Vote.create({
-                    value: 1,
-                    userId: newUser.id,
-                    postId: this.post.id
-                }).then((newVote) => {
-                    console.log(this.post.getPoints())
-                    expect(this.post.getPoints()).toBe(2)
-                    done();
-                })
-            })
-          })
-       })
-    })
 })
