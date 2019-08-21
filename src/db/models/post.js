@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     }
-  } 
+  },{} 
   );
   Post.associate = function(models) {
     Post.belongsTo(models.Topic, {
@@ -38,16 +38,14 @@ module.exports = (sequelize, DataTypes) => {
     });
     Post.hasMany(models.Vote, {
       foreignKey: 'postId',
-      as: 'votes'
+      as: 'votes'  
     })
   };
   Post.prototype.getPoints = function(){
-    let votes = [];
-    votes.push(this.post.votes.value)
-    if(votes.length === 0){
+    if(this.votes.length === 0){
       return 0;
     }
-    return votes
+    return this.votes
     .map((v) => {return v.value})
     .reduce((prev, next) => {return prev + next})
   };

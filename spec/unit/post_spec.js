@@ -123,4 +123,60 @@ describe('Post', () => {
             });
         });
     });
+    describe('#getPoints()', () => {
+        it('should return number of votes for a post', (done) => {
+         Vote.create({
+             value: 1,
+             userId: this.user.id,
+             postId: this.post.id
+         }).then(() => {
+            expect(this.post.getPoints()).toBe(1);
+            done();
+           }).catch((err) => {
+             console.log(err);
+             done();
+           })
+        })
+     })
+     describe('#hasUpvoteFor()', () => {
+      it('should return true if the associated user has an upvote', (done) => {
+        Vote.create({
+          value: 1,
+          userId: this.user.id,
+          postId: this.post.id
+        })
+        .then((vote) => {
+          this.post.hasUpvoteFor(vote.userId)
+          .then((associatedPost) => {
+            expect(this.votes).toBe(true);
+            done();
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          done();
+        });
+      });
+    });
+
+    describe('#hasDownvoteFor()', () => {
+      it('should return true if the associated user has a downvote', (done) => {
+        Vote.create({
+          value: -1,
+          userId: this.user.id,
+          postId: this.post.id
+        })
+        .then((vote) => {
+          this.post.hasDownvoteFor(vote.userId)
+          .then((associatedPost) => {
+            expect(this.votes).toBe(true);
+            done();
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          done();
+        });
+      });
+    });
 })
