@@ -140,7 +140,54 @@ describe('routes: votes', () => {
            }
          );
        });
-     });
+       it('should not create multiple upvotes per user', (done) => {
+        const options = {
+          url: `${base}${this.topic.id}/posts/${this.post.id}/votes/upvote`
+        };
+        request.get(options, 
+        (err, res, body) => {
+          Vote.findOne({
+            where: {
+              userId: this.user.id,
+              postId: this.post.id
+            }
+          })
+          .then((vote) => {
+            expect(vote).not.toBeNull();
+            expect(vote.value).toBe(1);
+            expect(vote.userId).toBe(this.user.id);
+            expect(vote.postId).toBe(this.post.id);
+            done();
+          })
+          .catch((err) => {
+            console.log(err);
+            done();
+          })
+        });
+        //Multiple requests (upvote)
+        request.get(options, 
+        (err, res, body) => {
+          Vote.findOne({
+            where: {
+              userId: this.user.id,
+              postId: this.post.id
+            }
+          })
+          .then((vote) => {
+            expect(vote).not.toBeNull();
+            expect(vote.value).toBe(1);
+            expect(vote.userId).toBe(this.user.id);
+            expect(vote.postId).toBe(this.post.id);
+            done();
+          })
+          .catch((err) => {
+            console.log(err);
+            done();
+          });
+        });
+      });
+    });
+       });
 
      describe('GET /topics/:topicId/posts/:postId/votes/downvote', () => {
 
@@ -170,8 +217,51 @@ describe('routes: votes', () => {
            }
          );
        });
-     });
-
-   });
-  
-})
+       it('should not create multiple votes per user', (done) => {
+        const options = {
+          url: `${base}${this.topic.id}/posts/${this.post.id}/votes/downvote`
+        };
+        request.get(options, 
+        (err, res, body) => {
+          Vote.findOne({
+            where: {
+              userId: this.user.id,
+              postId: this.post.id
+            }
+          })
+          .then((vote) => {
+            expect(vote).not.toBeNull();
+            expect(vote.value).toBe(-1);
+            expect(vote.userId).toBe(this.user.id);
+            expect(vote.postId).toBe(this.post.id);
+            done();
+          })
+          .catch((err) => {
+            console.log(err);
+            done();
+          })
+        });
+        //Multiple requests (downvote)
+        request.get(options, 
+        (err, res, body) => {
+          Vote.findOne({
+            where: {
+              userId: this.user.id,
+              postId: this.post.id
+            }
+          })
+          .then((vote) => {
+            expect(vote).not.toBeNull();
+            expect(vote.value).toBe(-1);
+            expect(vote.userId).toBe(this.user.id);
+            expect(vote.postId).toBe(this.post.id);
+            done();
+          })
+          .catch((err) => {
+            console.log(err);
+            done();
+          });
+        });
+      });
+    });
+});

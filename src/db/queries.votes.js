@@ -24,7 +24,6 @@ module.exports = {
           callback(err);
         });
       } else {
-
         Vote.create({
           value: val,
           postId: req.params.postId,

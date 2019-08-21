@@ -2,6 +2,7 @@ const sequelize = require('../../src/db/models/index').sequelize;
 const Topic = require('../../src/db/models').Topic;
 const Post = require('../../src/db/models').Post;
 const User = require('../../src/db/models').User;
+const Vote = require('../../src/db/models').Vote;
 
 describe('Post', () => {
     beforeEach((done) => {
@@ -122,4 +123,28 @@ describe('Post', () => {
             });
         });
     });
+    describe('#getPoints()', () => {
+       it('should return number of votes for a post', (done) => {
+        Vote.create({
+            value: 1,
+            userId: this.user.id,
+            postId: this.post.id
+        }).then(() => {
+            User.create({
+                email: 'dsokhan@gmail.com',
+                password: 'password'
+            }).then((newUser) => {
+                Vote.create({
+                    value: 1,
+                    userId: newUser.id,
+                    postId: this.post.id
+                }).then((newVote) => {
+                    console.log(this.post.getPoints())
+                    expect(this.post.getPoints()).toBe(2)
+                    done();
+                })
+            })
+          })
+       })
+    })
 })
