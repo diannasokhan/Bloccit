@@ -148,7 +148,7 @@ describe('Post', () => {
         });
       });
     });
-     describe('#hasUpvoteFor()', () => {
+    describe('#hasUpvoteFor()', () => {
       it('should return true if the associated user has an upvote', (done) => {
         Vote.create({
           value: 1,
@@ -156,9 +156,8 @@ describe('Post', () => {
           postId: this.post.id
         })
         .then((vote) => {
-          this.post.hasUpvoteFor(vote.userId)
-          .then((associatedPost) => {
-            expect(this.votes).toBe(true);
+          this.post.hasUpvoteFor(this.user.id, (res) => {
+            expect(res).toBeTruthy();
             done();
           });
         })
@@ -168,7 +167,6 @@ describe('Post', () => {
         });
       });
     });
-
     describe('#hasDownvoteFor()', () => {
       it('should return true if the associated user has a downvote', (done) => {
         Vote.create({
