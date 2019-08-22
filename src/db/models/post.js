@@ -42,12 +42,13 @@ module.exports = (sequelize, DataTypes) => {
     })
   };
   Post.prototype.getPoints = function(){
-    if(this.votes.length === 0){
+    if(this.votes && this.votes.length === 0){
       return 0;
-    }
+    } else if (this.votes){
     return this.votes
     .map((v) => {return v.value})
     .reduce((prev, next) => {return prev + next})
+  }
   };
   Post.prototype.hasUpvoteFor = function(userId){
     if(this.votes.userId == userId && this.votes.value === 1) return true

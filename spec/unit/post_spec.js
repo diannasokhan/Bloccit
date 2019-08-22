@@ -123,21 +123,31 @@ describe('Post', () => {
             });
         });
     });
-    describe('#getPoints()', () => {
-        it('should return number of votes for a post', (done) => {
-         Vote.create({
-             value: 1,
-             userId: this.user.id,
-             postId: this.post.id
-         }).then(() => {
-            expect(this.post.getPoints()).toBe(1);
-            done();
-           }).catch((err) => {
-             console.log(err);
-             done();
-           })
+    describe("#getPoints()", () => {
+
+      it("should return the appropriate number of votes to post", (done) => {
+        Vote.create({
+          value: 1,
+          postId: this.post.id,
+          userId: this.user.id
         })
-     })
+        .then((vote) => {
+          expect(vote.value).toBe(1);
+          expect(vote.postId).toBe(this.post.id);
+          expect(vote.userId).toBe(this.user.id);
+          this.post.getVotes()
+          .then((votes) => {
+            this.post.votes = votes;
+            expect( this.post.getPoints() ).toBe(1);
+            done();
+          })
+        })
+        .catch((err) => {
+          console.log(err);
+          done();
+        });
+      });
+    });
      describe('#hasUpvoteFor()', () => {
       it('should return true if the associated user has an upvote', (done) => {
         Vote.create({
