@@ -168,16 +168,15 @@ describe('Post', () => {
       });
     });
     describe('#hasDownvoteFor()', () => {
-      it('should return true if the associated user has a downvote', (done) => {
+      it('should return true if the associated user has an downvote', (done) => {
         Vote.create({
-          value: -1,
+          value: 1,
           userId: this.user.id,
           postId: this.post.id
         })
         .then((vote) => {
-          this.post.hasDownvoteFor(vote.userId)
-          .then((associatedPost) => {
-            expect(this.votes).toBe(true);
+          this.post.hasDownvoteFor(this.user.id, (res) => {
+            expect(res).toBeTruthy();
             done();
           });
         })

@@ -204,7 +204,7 @@ describe('routes : comments', () => {
                     `${base}${this.topic.id}/posts/${this.post.id}/comments/${this.comment.id}/destroy`,
                     (err, res, body) => {
                       expect(res.statusCode).toBe(401);
-                      Comment.all()
+                      Comment.findAll()
                       .then((comments) => {
                         expect(err).toBeNull();
                         expect(comments.length).toBe(commentCountBeforeDelete);
@@ -241,7 +241,7 @@ describe('routes : comments', () => {
           });
     
           it('should delete another members comment', (done) => {
-            Comment.all()
+            Comment.findAll()
             .then((comments) => {
               const commentCountBeforeDelete = comments.length;
               expect(commentCountBeforeDelete).toBe(1);
@@ -249,7 +249,7 @@ describe('routes : comments', () => {
                 `${base}${this.topic.id}/posts/${this.post.id}/comments/${this.comment.id}/destroy`,
                 (err, res, body) => {
                   expect(res.statusCode).toBe(302);
-                  Comment.all()
+                  Comment.findAll()
                   .then((comments) => {
                     expect(err).toBeNull();
                     expect(comments.length).toBe(commentCountBeforeDelete - 1);

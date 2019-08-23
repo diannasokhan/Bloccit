@@ -109,7 +109,7 @@ describe('routes : flairs', () => {
             expect(this.flair.id).toBe(1);
             request.post(`${base}/${this.post.id}/flairs/${this.flair.id}/destroy`, (err, res, body) => {
 
-                Flair.findById(1)
+                Flair.findByPk(1)
                 .then((flair) => {
                     expect(err).toBeNull();
                     expect(flair).toBeNull();
