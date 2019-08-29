@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'postId',
       as: 'votes'  
     })
-  };
+ 
   Post.prototype.getPoints = function(){
     if(this.votes && this.votes.length === 0){
       return 0;
@@ -77,4 +77,5 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   return Post;
+};
 };
