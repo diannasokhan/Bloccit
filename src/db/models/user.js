@@ -17,8 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 'member'
     }
+  },{}
 
-  });
+  );
   User.associate = function(models) {
     User.hasMany(models.Post, {
       foreignKey: 'userId',

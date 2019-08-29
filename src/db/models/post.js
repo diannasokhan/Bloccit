@@ -75,7 +75,6 @@ module.exports = (sequelize, DataTypes) => {
       votes.value = -1 ? callback(true) : callback(false);
     });
   }
-
-  return Post;
 };
+return Post;
 };
