@@ -51,7 +51,7 @@ module.exports = {
              res.redirect("/");
            } else {
      
-             res.render("users/show", {...result});
+             res.render('users/show', {...result});
            }
          });
        }
