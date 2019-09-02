@@ -8,7 +8,7 @@ module.exports = class PostPolicy extends ApplicationPolicy{
         return this.new();
     }
     edit(){
-        return this._isAdmin();
+        return this._isAdmin() || this._isMember();
     }
     update(){
         return this.edit();

@@ -42,8 +42,8 @@ describe("routes : posts", () => {
         })
       })
     });
-
   });
+ 
   describe('guest user performing crud actions for Post', () => {
     beforeEach((done) => {
       request.get({
@@ -132,6 +132,7 @@ describe("routes : posts", () => {
         done();
       });
     });
+  });
 
   describe('admin user performing CRUD actions for post', () => {
     beforeEach((done) => {
@@ -278,5 +279,4 @@ describe("routes : posts", () => {
     });
    });
   });
- });
 });
